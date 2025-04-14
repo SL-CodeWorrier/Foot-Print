@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icons8-heart-with-dog-paw-100.png",
+      "filename" : "post4.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icons8-heart-with-dog-paw-100@2x.png",
+      "filename" : "post4@2x.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icons8-heart-with-dog-paw-100@3x.png",
+      "filename" : "post4@3x.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
