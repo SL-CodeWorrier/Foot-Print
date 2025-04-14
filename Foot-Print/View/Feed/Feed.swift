@@ -9,7 +9,23 @@ import SwiftUI
 
 struct Feed: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical, showsIndicators: false,
+                   content: {
+            VStack(spacing: 18) {
+                
+                postCaptionCellView(postCaption: "Hey guys, I'm planning a solo hike in the mountains this weekend. #Hiking #SoloHiking", postImage: "post")
+                
+                Divider()
+                
+                ForEach(1...20, id: \.self) { _ in
+                    postCaptionCellView(postCaption: sampleText)
+                    Divider()
+                }
+            }
+            .padding(.top)
+            .padding(.horizontal)
+            .zIndex(0)
+        })
     }
 }
 

@@ -75,6 +75,7 @@ struct postCaptionCellView: View {
                     
                 }, label: {
                     Image("upload").resizable()
+                        .renderingMode(.template)
                         .frame(width: 18, height: 15)
                 }).foregroundColor(.blue)
             })
@@ -84,7 +85,7 @@ struct postCaptionCellView: View {
 }
 
 #Preview {
-    TravelCellView(post: sampleText)
+    postCaptionCellView(postCaption: sampleText)
 }
 
 var sampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."

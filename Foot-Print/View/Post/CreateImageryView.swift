@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateWriteView: View {
+struct CreateImageryView: View {
     
     @State var text = ""
     
@@ -39,5 +39,5 @@ struct CreateWriteView: View {
 }
 
 #Preview {
-    CreateWriteView()
+    CreateImageryView()
 }
