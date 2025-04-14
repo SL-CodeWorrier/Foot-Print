@@ -28,6 +28,18 @@ struct SearchBar: View {
                             .padding(.leading, 8)
                     }
                 )
+            
+            Button(action: {
+                isEditing = false
+                text = ""
+                UIApplication.shared.endEditing() 
+            }, label: {
+                Text("Cansel")
+                    .foregroundColor(.black)
+                    .padding(.trailing, 8)
+                    .transition(.move(edge: .trailing))
+                    .animation(.default)
+            })
         }
         .onTapGesture {
             isEditing = true

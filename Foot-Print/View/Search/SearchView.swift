@@ -18,8 +18,15 @@ struct SearchView: View {
             SearchBar(text: $text, isEditing: $isEditing)
                 .padding(.horizontal)
             
-            List(0..<9) { i in
-                SearchCell(tag: "Hello", footPrints: String(i))
+            if !isEditing {
+                List(0..<9) { i in
+                    SearchCell(tag: "Hello", footPrints: String(i))
+                }
+            }
+            else {
+                List(0..<9) { _ in
+                    SearchUserCell()
+                }
             }
         }
     }
