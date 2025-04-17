@@ -152,7 +152,8 @@ struct SlideMenu: View {
                 .padding(.horizontal, 20)
                 .padding(.top, edges!.top == 0 ? 15 : edges?.top)
                 .padding(.bottom, edges!.bottom == 0 ? 15 : edges?.bottom)
-                .frame(width: width - 40)
+                //.frame(width: width - 40)
+                .frame(width: 300)
                 .background(Color.white)
                 .ignoresSafeArea(.all, edges: .vertical)
                 
