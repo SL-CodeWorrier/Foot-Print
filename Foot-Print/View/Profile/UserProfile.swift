@@ -36,11 +36,11 @@ struct UserProfile: View {
                             Image("banner")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: UIScreen.main.bounds.width, height: minY > 0 ? 180 + minY : 180, alignment: .center)
+                                .frame(width: getRect().width, height: minY > 0 ? 180 + minY : 180, alignment: .center)
                                 .cornerRadius(0)
                             
                             BlurView()
-                                .opacity(blueViewOpacity())
+                                .opacity(blurViewOpacity())
                             
                             VStack(spacing: 5, content: {
                                 Text("Solo")
@@ -54,9 +54,9 @@ struct UserProfile: View {
                             .offset(y: titleOffset > 100 ? 0 : -getTitleOffset())
                             .opacity(titleOffset < 100 ? 1 : 0)
                         }
-                            .clipped()
-                            .frame(height: minY > 0 ? 180 + minY : nil)
-                            .offset(y: minY > 0 ? -minY : -minY < 80 ? 0 : -minY - 80)
+                        .clipped()
+                        .frame(height: minY > 0 ? 180 + minY : nil)
+                        .offset(y: minY > 0 ? -minY : -minY < 80 ? 0 : -minY - 80)
                     )
                 }
                 .frame(height: 180)
@@ -136,7 +136,7 @@ struct UserProfile: View {
                         ScrollView(.horizontal, showsIndicators: false, content: {
                             HStack(spacing: 0, content: {
                                 TabButton(title: "Footprints", currentTab: $currentTab, animation: animation)
-                                TabButton(title: "Footprints and Likes", currentTab: $currentTab, animation: animation)
+                                TabButton(title: "Footprints & Likes", currentTab: $currentTab, animation: animation)
                                 TabButton(title: "Media", currentTab: $currentTab, animation: animation)
                                 TabButton(title: "Likes", currentTab: $currentTab, animation: animation)
                             })
@@ -150,25 +150,42 @@ struct UserProfile: View {
                     .overlay(
                         
                         GeometryReader { proxy -> Color in
-                            let miny = proxy.frame(in: .global).minY
+                            let minY = proxy.frame(in: .global).minY
                             
                             DispatchQueue.main.async {
-                                self.tabBarOffset = miny
+                                self.tabBarOffset = minY
                             }
                             return Color.clear
                         }
                         .frame(width: 0, height: 0)
                         , alignment: .top
-                        
                     )
                     .zIndex(1)
+                    
+                    VStack(spacing: 18, content: {
+                        
+                        postCaptionCellView(postCaption: "Hey Tim, are those regular glasses?", postImage: "post")
+                        
+                        Divider()
+                        
+                        ForEach(0..<20, id:\.self) { _ in
+                            
+                            postCaptionCellView(postCaption: sampleText)
+                            Divider()
+                            
+                        }
+                    })
+                    .padding(.top)
+                    .zIndex(0)
                 }
-                
+                .padding(.horizontal)
+                .zIndex(-offset > 80 ? 0 : 1)
             }
         }
+        .ignoresSafeArea(.all, edges: .top)
     }
     
-    func blueViewOpacity() -> Double {
+    func blurViewOpacity() -> Double {
         let progress = -(offset + 80) / 150
         return Double(-offset > 80 ? progress : 0)
     }
