@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var authViewModel: AuthViewModel;
+    
     var body: some View {
-        MainView()
+        if authViewModel.isauthenticated{
+            if let user = authViewModel.currentUser{
+                MainView(user: user);
+            }
+        }
+        else{
+            WelcomeView();
+        }
     }
 }
 

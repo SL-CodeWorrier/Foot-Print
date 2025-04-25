@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8341D3232DBA416A00652DAE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8341D3222DBA416A00652DAE /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8348759E2D85023A009F03AF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8341D3232DBA416A00652DAE /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = "Foot-Print";
 			packageProductDependencies = (
+				8341D3222DBA416A00652DAE /* Kingfisher */,
 			);
 			productName = "Foot-Print";
 			productReference = 8348758D2D850237009F03AF /* Foot-Print.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 834875842D850237009F03AF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8341D3212DBA3D9000652DAE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8348758E2D850237009F03AF /* Products */;
 			projectDirPath = "";
@@ -552,6 +561,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8341D3212DBA3D9000652DAE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8341D3222DBA416A00652DAE /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8341D3212DBA3D9000652DAE /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 834875852D850237009F03AF /* Project object */;
 }

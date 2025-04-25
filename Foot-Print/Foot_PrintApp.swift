@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct Foot_PrintApp: App {
+    
+    init(){
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(AuthViewModel.shared);
+            //EditProfileView()
         }
     }
 }

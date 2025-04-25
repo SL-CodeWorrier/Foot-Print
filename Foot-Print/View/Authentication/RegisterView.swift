@@ -9,16 +9,19 @@ import SwiftUI
 
 struct RegisterView: View {
     
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     @State var name = ""
     @State var email = ""
     @State var password = ""
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack {
             ZStack {
                 HStack {
                     Button(action: {
-                        
+                        presentationMode.wrappedValue.dismiss() 
                     }, label: {
                         Text("Cancel")
                             .foregroundColor(.blue)
@@ -60,6 +63,8 @@ struct RegisterView: View {
                     Spacer()
                     
                     Button(action: {
+                        
+                        self.viewModel.register(name: name, username: name, email: email, password: password)
                         
                     }, label: {
                         Capsule()

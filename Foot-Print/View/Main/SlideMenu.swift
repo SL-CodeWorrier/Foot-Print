@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SlideMenu: View {
     
+    @ObservedObject var viewModel: AuthViewModel
     @State var show = false
+    @State private var isAuthenticated = true
     
     var menuButtons = ["Profile", "Lists", "Topics", "Bookmarks", "Moments"]
     
@@ -26,20 +28,25 @@ struct SlideMenu: View {
                 
                 VStack(alignment: .leading, content: {
                     
-                    Image("logo")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
+                    NavigationLink (destination: UserProfile(user: viewModel.currentUser!)) {
+                        Image("logo")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                    }
+
                     
                     HStack(alignment: .top, spacing: 12, content: {
                         
                         VStack(alignment: .leading, spacing: 12, content: {
-                            Text("Solo")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .foregroundColor(.black)
+                            NavigationLink(destination: UserProfile(user: viewModel.currentUser!)){
+                                Text(viewModel.currentUser?.name ?? "")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.black)
+                            }
                             
-                            Text("@solo_hiker")
+                            Text("@\(viewModel.currentUser?.username ?? "")")
                                 .foregroundColor(.gray)
                             
                             HStack(spacing: 20, content: {
@@ -70,7 +77,9 @@ struct SlideMenu: View {
                     VStack(alignment: .leading, content: {
                         
                         ForEach(menuButtons, id:\.self) { item in
-                            MenuButton(title: item)
+                            NavigationLink(destination: UserProfile(user: viewModel.currentUser!)){
+                                MenuButton(title: item)
+                            }
                         }
                         
                         Divider()
@@ -98,6 +107,26 @@ struct SlideMenu: View {
                             Text("Help centre")
                                 .foregroundColor(.black)
                         })
+                        .padding(.top, 0)
+                        
+                        if isAuthenticated {
+                                        // Your HomeView content here
+                                        
+                                        Button(action: {
+                                            self.viewModel.logout()
+                                            // After logging out, set isAuthenticated to false
+                                            DispatchQueue.main.async {
+                                                self.isAuthenticated = false
+                                            }
+                                        }, label: {
+                                            Text("Logout")
+                                                .foregroundColor(.red)
+                                        })
+                                        .padding(.top, 10)
+                                    } else {
+                                        // When not authenticated, show LoginView
+                                        LoginView() // Assuming this is your login screen view
+                                    }
                         
                         Spacer(minLength: 0)
                         
@@ -161,8 +190,4 @@ struct SlideMenu: View {
             })
         }
     }
-}
-
-#Preview {
-    SlideMenu()
 }
